@@ -1,4 +1,10 @@
-document.querySelector('#')
+document.querySelector('#heightWidthSubmit').addEventListener('click',
+    function() {
+        let heightWidth = document.querySelector('#heightWidth').value;
+        clearCanvas();
+        generateCanvas(heightWidth);
+    }
+)
 
 function generateCanvas(n) {
     let canvas = document.querySelector('#sketchBoard');
@@ -11,5 +17,13 @@ function generateCanvas(n) {
             cell.classList.add('canvasColumn');
             row.appendChild(cell);
         }
+        console.log('Adding Row: ', row+1);
+    }
+}
+
+function clearCanvas() {
+    let canvas = document.querySelector('#sketchBoard');
+    while (canvas.firstChild) {
+        canvas.removeChild(canvas.lastChild);
     }
 }
