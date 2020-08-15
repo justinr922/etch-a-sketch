@@ -16,17 +16,32 @@ document.querySelector('#heightWidthSubmit').addEventListener('click',
         generateCanvas(heightWidth);
     }
 )
+
 let colorCheck = document.querySelector("#randomColor");
+let crazyFunTimeCheck = document.querySelector("#crazyFunTime");
+let crazyFunTimeRepeater;
+crazyFunTimeCheck.addEventListener('change', function() {
+    console.log(crazyFunTimeCheck.checked)
+    if (crazyFunTimeCheck.checked) {
+        crazyFunTimeRepeater = setInterval(crazyFunTime, 500);
+    } else {
+        clearInterval(crazyFunTimeRepeater);
+    }
+})
 
 function createHover(object) {
     object.addEventListener('mouseenter', function() {
+        changeColor(object)
+    })
+}
+
+function changeColor(object) {
         if (colorCheck.checked) {
             let randomColor = '#' + Math.floor(Math.random()*16777216).toString(16)
             object.style.backgroundColor = randomColor;
         } else {
         object.style.backgroundColor = '#000000'
         }
-    })
 }
 
 function generateCanvas(n) {
@@ -51,4 +66,15 @@ function clearCanvas() {
         canvas.removeChild(canvas.lastChild);
 
     }
+}
+
+function crazyFunTime() {
+    let rows = document.querySelector('#sketchBoard').children;
+    console.log(rows)
+    for (const row of rows) {
+        let cells = row.children;
+        for (const cell of cells) {
+            changeColor(cell);
+        }
+    };
 }
