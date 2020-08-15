@@ -1,3 +1,14 @@
+// Execute a function when the user releases a key on the keyboard
+document.querySelector('#heightWidth').addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      document.querySelector('#heightWidthSubmit').click();
+    }
+  }); 
+
 document.querySelector('#heightWidthSubmit').addEventListener('click',
     function() {
         let heightWidth = document.querySelector('#heightWidth').value;
@@ -5,10 +16,16 @@ document.querySelector('#heightWidthSubmit').addEventListener('click',
         generateCanvas(heightWidth);
     }
 )
+let colorCheck = document.querySelector("#randomColor");
 
 function createHover(object) {
     object.addEventListener('mouseenter', function() {
+        if (colorCheck.checked) {
+            let randomColor = '#' + Math.floor(Math.random()*16777216).toString(16)
+            object.style.backgroundColor = randomColor;
+        } else {
         object.style.backgroundColor = '#000000'
+        }
     })
 }
 
