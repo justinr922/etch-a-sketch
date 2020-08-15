@@ -1,3 +1,5 @@
+document.querySelector('#')
+
 function generateCanvas(n) {
     let canvas = document.querySelector('#sketchBoard');
     for (let row = 0; row < n; row++) {
